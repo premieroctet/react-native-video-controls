@@ -24,7 +24,7 @@ An example app with a basic usage is available in the [example](example) folder.
 
 ## API
 
-See [API](api) for the list of available components and hooks.
+See [API](API.md) for the list of available components and hooks.
 
 ## Contributing
 
