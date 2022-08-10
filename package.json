@@ -1,6 +1,6 @@
 {
   "name": "@premieroctet/react-native-video-controls",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Controls elements for react-native video players",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/foyarash/react-native-video-controls",
+  "repository": "https://github.com/premieroctet/react-native-video-controls",
   "author": "foyarash <11079152+foyarash@users.noreply.github.com> (https://github.com/foyarash)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/foyarash/react-native-video-controls/issues"
+    "url": "https://github.com/premieroctet/react-native-video-controls/issues"
   },
-  "homepage": "https://github.com/foyarash/react-native-video-controls#readme",
+  "homepage": "https://github.com/premieroctet/react-native-video-controls#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
