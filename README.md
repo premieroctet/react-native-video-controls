@@ -7,13 +7,13 @@ Controls elements and utilities for react-native video players (react-native-vid
 ### NPM
 
 ```sh
-npm install react-native-video-controls
+npm install @premieroctet/react-native-video-controls
 ```
 
 ### Yarn
 
 ```sh
-yarn add react-native-video-controls
+yarn add @premieroctet/react-native-video-controls
 ```
 
 Additionally, you need to install [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/installation) (at least v2) and [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) (at least v2).
