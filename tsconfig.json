@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-video-controls": ["./src/index"]
+      "@premieroctet/react-native-video-controls": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

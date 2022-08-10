@@ -3,7 +3,7 @@
   "description": "Example app for react-native-video-controls",
   "version": "0.0.1",
   "private": true,
-  "main": "index",
+  "main": "index.js",
   "scripts": {
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -12,19 +12,23 @@
     "test": "jest"
   },
   "dependencies": {
-    "expo": "^42.0.0",
-    "expo-splash-screen": "~0.11.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-native": "0.63.4",
-    "react-native-unimodules": "~0.14.5",
-    "react-native-web": "~0.13.12"
+    "expo": "^45.0.0",
+    "expo-application": "~4.1.0",
+    "expo-av": "~11.2.3",
+    "expo-screen-orientation": "~4.2.0",
+    "expo-splash-screen": "~0.15.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-gesture-handler": "~2.2.1",
+    "react-native-reanimated": "~2.8.0",
+    "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
+    "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.9.6",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "babel-preset-expo": "8.3.0",
-    "expo-cli": "^4.0.13"
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-preset-expo": "~9.1.0",
+    "expo-cli": "^5.4.9"
   }
 }

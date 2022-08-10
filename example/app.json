@@ -12,11 +12,18 @@
       "android",
       "web"
     ],
+    "orientation": "portrait",
     "ios": {
       "supportsTablet": true
     },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "flipperHack": "React Native packager is running"
+    },
+    "android": {
+      "package": "com.foyarash.reactnativevideocontrolsexample"
+    }
   }
 }
