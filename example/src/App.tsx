@@ -74,10 +74,24 @@ export default function App() {
   const videoStateComponents =
     React.useMemo<ControlVideoStateComponents>(() => {
       return {
-        play: () => <FontAwesome name="play" size={25} color="white" />,
-        pause: () => <FontAwesome name="pause" size={25} color="white" />,
-        forward: () => <FontAwesome name="forward" size={20} color="white" />,
-        rewind: () => <FontAwesome name="backward" size={20} color="white" />,
+        play: () => (
+          <FontAwesome
+            name="play"
+            size={50}
+            style={{ marginHorizontal: 60 }}
+            color="white"
+          />
+        ),
+        pause: () => (
+          <FontAwesome
+            name="pause"
+            size={50}
+            style={{ marginHorizontal: 60 }}
+            color="white"
+          />
+        ),
+        forward: () => <FontAwesome name="forward" size={30} color="white" />,
+        rewind: () => <FontAwesome name="backward" size={30} color="white" />,
       };
     }, []);
 
