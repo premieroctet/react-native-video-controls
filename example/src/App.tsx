@@ -161,7 +161,16 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
-        <View style={{ width: '100%', aspectRatio: 16 / 9 }}>
+        <View
+          style={[
+            { width: '100%' },
+            isFullScreen
+              ? {
+                  height: '100%',
+                }
+              : { aspectRatio: 16 / 9 },
+          ]}
+        >
           <VideoControls
             componentsProps={componentProps}
             components={components}
