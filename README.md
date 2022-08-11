@@ -18,6 +18,8 @@ yarn add @premieroctet/react-native-video-controls
 
 Additionally, you need to install [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/installation) (at least v2) and [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation) (at least v2).
 
+No other dependency is required, which makes the lib fully compatible with Expo.
+
 ## Usage
 
 An example app with a basic usage is available in the [example](example) folder.
