@@ -4,7 +4,7 @@
 
 Controls elements and utilities for react-native video players (react-native-video, expo-av, etc.).
 
-![Demo](video-controls-demo.webm)
+![Demo](video-controls-demo.mp4)
 
 ## Installation
 
