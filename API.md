@@ -102,6 +102,10 @@ Function called when zooming in the video with a pinch gesture.
 
 Function called when zooming out the video with a pinch gesture.
 
+### autoDismiss (optional, default `true`)
+
+Boolean indicating the auto dismiss of the controls.
+
 ---
 
 ## ControlSlider
