@@ -195,6 +195,12 @@ export type VideoControlProps = {
    * Function called on pinch gesture that is zooming out
    */
   onZoomOut?: () => void;
+  /**
+   * Boolean indicating the auto dismiss of the controls.
+   *
+   * Defaults to true
+   */
+  autoDismiss?: boolean;
 };
 
 export type ControlTouchableProps = {

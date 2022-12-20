@@ -27,6 +27,7 @@ type ControlsVisibilityProviderProps = {
   onHide: () => void;
   visibilityDuration?: number;
   isPlaying: boolean;
+  autoDismiss?: boolean;
 };
 
 const ControlsVisibilityProvider = ({
@@ -35,17 +36,18 @@ const ControlsVisibilityProvider = ({
   children,
   visibilityDuration,
   isPlaying,
+  autoDismiss = true,
 }: PropsWithChildren<ControlsVisibilityProviderProps>) => {
   const timeoutId = useRef<NodeJS.Timeout | undefined>(undefined);
   const startTimer = useCallback(() => {
-    if (!timeoutId.current) {
+    if (!timeoutId.current && autoDismiss) {
       timeoutId.current = setTimeout(() => {
         if (isPlaying) {
           onHide();
         }
       }, visibilityDuration);
     }
-  }, [visibilityDuration, onHide, isPlaying]);
+  }, [visibilityDuration, onHide, isPlaying, autoDismiss]);
 
   const stopTimer = useCallback(() => {
     clearTimeout(timeoutId.current);

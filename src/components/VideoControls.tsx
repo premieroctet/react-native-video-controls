@@ -46,6 +46,7 @@ export const VideoControls = ({
   videoElement,
   onZoomIn,
   onZoomOut,
+  autoDismiss = true,
 }: PropsWithChildren<VideoControlProps>) => {
   const [visible, setVisible] = useState(initialVisible);
   const opacityAnim = useSharedValue(initialVisible ? 1 : 0);
@@ -143,6 +144,7 @@ export const VideoControls = ({
       visible={visible}
       visibilityDuration={autoHideAfterDuration}
       isPlaying={componentsProps?.videoState?.isPlaying ?? false}
+      autoDismiss={autoDismiss}
     >
       <GestureDetector
         gesture={Gesture.Exclusive(pinchGesture, doubleTap, tapGesture)}
