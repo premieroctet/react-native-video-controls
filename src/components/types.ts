@@ -214,4 +214,4 @@ export type ControlTouchableProps = {
   children?:
     | React.ReactElement
     | (({ pressed }: { pressed: boolean }) => React.ReactElement);
-} & AccessibilityProps;
+};
