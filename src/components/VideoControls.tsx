@@ -5,7 +5,13 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { StyleSheet, View, ViewStyle } from 'react-native';
+import {
+  AccessibilityChangeEventName,
+  AccessibilityInfo,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -50,6 +56,26 @@ export const VideoControls = ({
 }: PropsWithChildren<VideoControlProps>) => {
   const [visible, setVisible] = useState(initialVisible);
   const opacityAnim = useSharedValue(initialVisible ? 1 : 0);
+  const [isScreenReaderEnabled, setIsScreenReaderEnabled] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const screenReaderChangedSubscription = AccessibilityInfo.addEventListener(
+      'screenReaderChanged' as AccessibilityChangeEventName,
+      (value: boolean) => {
+        setIsScreenReaderEnabled(value);
+      }
+    );
+    return () => {
+      // @ts-ignore
+      screenReaderChangedSubscription.remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isScreenReaderEnabled) setVisible(true);
+  }, [isScreenReaderEnabled]);
+
   const usedComponents = useMemo(() => {
     return { ...defaultComponents, ...components };
   }, [components]);
@@ -77,7 +103,9 @@ export const VideoControls = ({
   });
 
   const toggleVisible = useCallback(() => {
-    setVisible((old) => !old);
+    if (!isScreenReaderEnabled) {
+      setVisible((old) => !old);
+    }
   }, []);
 
   const tapGesture = useTapGesture({
@@ -85,7 +113,9 @@ export const VideoControls = ({
     maxTapDuration: 100,
     onEnd: () => {
       'worklet';
-      runOnJS(toggleVisible)();
+      if (!isScreenReaderEnabled) {
+        runOnJS(toggleVisible)();
+      }
     },
   });
   const doubleTap = useTapGesture({
@@ -144,7 +174,7 @@ export const VideoControls = ({
       visible={visible}
       visibilityDuration={autoHideAfterDuration}
       isPlaying={componentsProps?.videoState?.isPlaying ?? false}
-      autoDismiss={autoDismiss}
+      autoDismiss={isScreenReaderEnabled ? false : autoDismiss}
     >
       <GestureDetector
         gesture={Gesture.Exclusive(pinchGesture, doubleTap, tapGesture)}
@@ -155,6 +185,7 @@ export const VideoControls = ({
             style={[styles.container, animatedContainerStyle, containerStyle]}
             onLayout={onContainerLayout}
             pointerEvents={visible ? 'auto' : 'none'}
+            accessibilityLabel="Video Container"
           >
             <SliderComponent {..._componentsProps.slider!} />
             <View

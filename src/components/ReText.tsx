@@ -1,6 +1,9 @@
 // https://github.com/wcandillon/react-native-redash/blob/master/src/ReText.tsx
 import React from 'react';
-import type { TextProps as RNTextProps } from 'react-native';
+import type {
+  AccessibilityProps,
+  TextProps as RNTextProps,
+} from 'react-native';
 import { StyleSheet, TextInput } from 'react-native';
 import Animated, {
   useAnimatedProps,
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
 
 Animated.addWhitelistedNativeProps({ text: true });
 
-interface TextProps {
+interface TextProps extends AccessibilityProps {
   text: SharedValue<string>;
   style?: AnimateProps<RNTextProps>['style'];
 }
@@ -37,6 +40,7 @@ const ReText = (props: TextProps) => {
       value={text.value}
       style={[styles.baseStyle, style]}
       {...{ animatedProps }}
+      {...props}
     />
   );
 };
