@@ -126,6 +126,15 @@ export const ControlSlider = forwardRef<
               <Animated.View
                 style={thumbStyle}
                 onLayout={onThumbLayout}
+                accessible={true}
+                accessibilityLabel="Video slider thumb"
+                accessibilityValue={{
+                  min: 0,
+                  max: totalDuration,
+                  now: timeValue.value,
+                }}
+                accessibilityHint="Drag to seek video"
+                accessibilityRole="adjustable"
                 hitSlop={
                   typeof thumbHitSlop === 'number'
                     ? {

@@ -1,4 +1,5 @@
 import type {
+  AccessibilityProps,
   Insets,
   LayoutChangeEvent,
   StyleProp,
@@ -89,7 +90,7 @@ export type ControlSliderProps = {
    * Hit slop for the thumb gesture.
    */
   thumbHitSlop?: number | Insets;
-};
+} & AccessibilityProps;
 
 export type ControlSliderMethods = {
   setCurrentTime: (time: number) => void;
@@ -213,4 +214,4 @@ export type ControlTouchableProps = {
   children?:
     | React.ReactElement
     | (({ pressed }: { pressed: boolean }) => React.ReactElement);
-};
+} & AccessibilityProps;
