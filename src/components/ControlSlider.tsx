@@ -6,6 +6,7 @@ import useControlSlider from '../hooks/useControlSlider';
 import useControlThumb from '../hooks/useControlThumb';
 import useLayout from '../hooks/useLayout';
 import type { ControlSliderMethods, ControlSliderProps } from './types';
+import { formatTime } from '../utils/time';
 
 export const ControlSlider = forwardRef<
   ControlSliderMethods,
@@ -124,17 +125,17 @@ export const ControlSlider = forwardRef<
               )}
             >
               <Animated.View
-                style={thumbStyle}
-                onLayout={onThumbLayout}
                 accessible={true}
                 accessibilityLabel="Video slider thumb"
                 accessibilityValue={{
                   min: 0,
                   max: totalDuration,
-                  now: timeValue.value,
+                  text: `${formatTime(timeValue.value)} of ${formatTime(
+                    totalDuration
+                  )}`,
                 }}
-                accessibilityHint="Drag to seek video"
-                accessibilityRole="adjustable"
+                style={thumbStyle}
+                onLayout={onThumbLayout}
                 hitSlop={
                   typeof thumbHitSlop === 'number'
                     ? {

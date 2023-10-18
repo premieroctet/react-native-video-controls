@@ -112,7 +112,9 @@ export const VideoControls = ({
     maxTapDuration: 100,
     onEnd: () => {
       'worklet';
-      runOnJS(toggleVisible)();
+      if (!isScreenReaderEnabled) {
+        runOnJS(toggleVisible)();
+      }
     },
   });
   const doubleTap = useTapGesture({
