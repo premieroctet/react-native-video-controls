@@ -103,8 +103,9 @@ export const VideoControls = ({
   });
 
   const toggleVisible = useCallback(() => {
-    if (isScreenReaderEnabled) return;
-    setVisible((old) => !old);
+    if (!isScreenReaderEnabled) {
+      setVisible((old) => !old);
+    }
   }, []);
 
   const tapGesture = useTapGesture({
