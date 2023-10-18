@@ -56,9 +56,8 @@ export const VideoControls = ({
 }: PropsWithChildren<VideoControlProps>) => {
   const [visible, setVisible] = useState(initialVisible);
   const opacityAnim = useSharedValue(initialVisible ? 1 : 0);
-  const [isScreenReaderEnabled, setIsScreenReaderEnabled] = useState<
-    undefined | boolean
-  >(undefined);
+  const [isScreenReaderEnabled, setIsScreenReaderEnabled] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const screenReaderChangedSubscription = AccessibilityInfo.addEventListener(
