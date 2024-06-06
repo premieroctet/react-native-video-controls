@@ -72,6 +72,10 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 MIT
 
+## Sponsors
+
+This project is being developed by [Premier Octet](https://www.premieroctet.com), a Web and mobile agency specializing in React and React Native developments.
+
 ---
 
 Inspired from [react-native-video-controls](https://github.com/itsnubix/react-native-video-controls)
