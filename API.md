@@ -408,3 +408,12 @@ The context holds the following values:
 - `startTimer` : function that starts the timer
 - `stopTimer` : function that stops the timer
 - `isPlaying` : boolean indicating if the video is playing or not
+
+---
+
+# Methods
+
+You can access the following methods thanks to a ref to the `VideoControls` component:
+
+- `toggleVisible`: function to toggle the visibility of the controls
+- `setVisible`: function to set the visibility of the controls. Takes a boolean as an argument.
