@@ -201,6 +201,12 @@ export type VideoControlProps = {
    * Defaults to true
    */
   autoDismiss?: boolean;
+  /**
+   * Boolean indicating if the controls should be dismissed on tap.
+   *
+   * Defaults to true
+   */
+  enableDismissOnTap?: boolean;
 };
 
 export type ControlTouchableProps = {

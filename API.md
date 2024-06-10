@@ -106,6 +106,10 @@ Function called when zooming out the video with a pinch gesture.
 
 Boolean indicating the auto dismiss of the controls.
 
+### enableDismissOnTap (optional, default `true`)
+
+Boolean indicating if the controls should be dismissed when the user taps on the controls overlay.
+
 ---
 
 ## ControlSlider

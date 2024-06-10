@@ -59,6 +59,7 @@ export const VideoControls = forwardRef<
       onZoomIn,
       onZoomOut,
       autoDismiss = true,
+      enableDismissOnTap = true,
     },
     ref
   ) => {
@@ -99,7 +100,10 @@ export const VideoControls = forwardRef<
       maxTapDuration: 100,
       onEnd: () => {
         'worklet';
-        runOnJS(toggleVisible)();
+
+        if (enableDismissOnTap) {
+          runOnJS(toggleVisible)();
+        }
       },
     });
     const doubleTap = useTapGesture({
