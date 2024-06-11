@@ -1,7 +1,10 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { LayoutRectangle, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
 import useControlSlider from '../hooks/useControlSlider';
 import useControlThumb from '../hooks/useControlThumb';
 import useLayout from '../hooks/useLayout';
@@ -35,6 +38,18 @@ export const ControlSlider = forwardRef<
   ) => {
     const [layout, onLayout] = useLayout();
     const [thumbLayout, onThumbLayout] = useLayout();
+    const thumbLayoutShared = useSharedValue<LayoutRectangle>({
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    });
+    const layoutShared = useSharedValue<LayoutRectangle>({
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+    });
     const {
       setCurrentTime,
       timeValue,
@@ -68,11 +83,19 @@ export const ControlSlider = forwardRef<
       },
     }));
 
+    if (thumbLayout) {
+      thumbLayoutShared.value = thumbLayout;
+    }
+
+    if (layout) {
+      layoutShared.value = layout;
+    }
+
     const thumbStyle = useAnimatedStyle(() => {
       const thumbX = thumbValue.value;
-      const thumbHeight = thumbLayout?.height ?? 0;
-      const thumbWidth = thumbLayout?.width ?? 0;
-      const layoutHeight = layout?.height ?? 0;
+      const thumbHeight = thumbLayoutShared.value?.height ?? 0;
+      const thumbWidth = thumbLayoutShared.value?.width ?? 0;
+      const layoutHeight = layoutShared.value?.height ?? 0;
 
       return {
         transform: [
@@ -85,7 +108,7 @@ export const ControlSlider = forwardRef<
         ],
         opacity: layout ? 1 : 0,
       };
-    }, [layout, thumbValue, thumbLayout]);
+    });
 
     return (
       <View style={[styles.container, sliderContainerStyle]}>
