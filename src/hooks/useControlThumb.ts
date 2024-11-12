@@ -77,7 +77,9 @@ const useControlThumb = ({
     const currentTime = time;
     if (canUpdateThumbFromTime.current) {
       thumbValue.value =
-        (currentTime / totalDuration) * (progressLayout?.width ?? 0);
+        totalDuration && progressLayout?.width
+          ? (currentTime / totalDuration) * progressLayout.width
+          : 0;
     }
   };
 
