@@ -84,8 +84,9 @@ const useControlThumb = ({
   useEffect(() => {
     if (progressLayout) {
       thumbValue.value =
-        (timeSharedValue.value / totalDuration || 0) *
-        (progressLayout?.width ?? 0);
+        totalDuration && progressLayout?.width
+          ? (timeSharedValue.value / totalDuration) * progressLayout.width
+          : 0;
     }
   }, [progressLayout]);
 
