@@ -19,7 +19,13 @@ const ControlFullScreen = ({
         resetVisibilityTimer();
       }}
     >
-      <View>{isFullScreen ? <ExitFullScreen /> : <FullScreen />}</View>
+      <View
+        accessible
+        accessibilityLabel="Toggle fullscreen"
+        accessibilityRole="button"
+      >
+        {isFullScreen ? <ExitFullScreen /> : <FullScreen />}
+      </View>
     </ControlTouchable>
   );
 };

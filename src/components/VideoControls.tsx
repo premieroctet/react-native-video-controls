@@ -10,7 +10,9 @@ import React, {
 import {
   AccessibilityChangeEventName,
   AccessibilityInfo,
-  StyleSheet, View, type ViewStyle
+  StyleSheet,
+  View,
+  type ViewStyle,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -174,12 +176,13 @@ export const VideoControls = forwardRef<
     }, [isScreenReaderEnabled]);
 
     useEffect(() => {
-      const screenReaderChangedSubscription = AccessibilityInfo.addEventListener(
-        'screenReaderChanged' as AccessibilityChangeEventName,
-        (value: boolean) => {
-          setIsScreenReaderEnabled(value);
-        }
-      );
+      const screenReaderChangedSubscription =
+        AccessibilityInfo.addEventListener(
+          'screenReaderChanged' as AccessibilityChangeEventName,
+          (value: boolean) => {
+            setIsScreenReaderEnabled(value);
+          }
+        );
       return () => {
         // @ts-expect-error
         screenReaderChangedSubscription.remove();
@@ -197,7 +200,11 @@ export const VideoControls = forwardRef<
         <GestureDetector
           gesture={Gesture.Exclusive(pinchGesture, doubleTap, tapGesture)}
         >
-          <Animated.View>
+          <Animated.View
+            accessible
+            accessibilityRole="button"
+            accessibilityLabel="Controls overlay"
+          >
             {videoElement}
             <Animated.View
               style={[styles.container, animatedContainerStyle, containerStyle]}

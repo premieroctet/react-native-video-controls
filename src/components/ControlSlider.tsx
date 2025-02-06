@@ -1,5 +1,10 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
-import { LayoutRectangle, StyleSheet, View } from 'react-native';
+import {
+  AccessibilityActionEvent,
+  LayoutRectangle,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedStyle,
@@ -111,6 +116,21 @@ export const ControlSlider = forwardRef<
       };
     });
 
+    const onAccessibilityAction = (evt: AccessibilityActionEvent) => {
+      const actionName = evt.nativeEvent.actionName;
+
+      switch (actionName) {
+        case 'increment': {
+          onSeek?.(Math.min(totalDuration, timeValue.value + 5));
+          break;
+        }
+        case 'decrement': {
+          onSeek?.(Math.max(0, timeValue.value - 5));
+          break;
+        }
+      }
+    };
+
     return (
       <View style={[styles.container, sliderContainerStyle]}>
         {renderCurrentTime?.(timeValue)}
@@ -120,6 +140,25 @@ export const ControlSlider = forwardRef<
             onLayout(event);
             onSliderLayout?.(event);
           }}
+          accessibilityLabel="Control slider"
+          accessible
+          accessibilityValue={{
+            min: 0,
+            max: totalDuration,
+            now: timeValue.value,
+            text: `${timeValue.value} seconds`,
+          }}
+          accessibilityActions={[
+            {
+              name: 'increment',
+              label: 'Increment',
+            },
+            {
+              name: 'decrement',
+              label: 'Decrement',
+            },
+          ]}
+          onAccessibilityAction={onAccessibilityAction}
         >
           <Animated.View
             style={[
@@ -157,6 +196,18 @@ export const ControlSlider = forwardRef<
                     totalDuration
                   )}`,
                 }}
+                accessibilityHint="Drag left or right to adjust the current time"
+                accessibilityActions={[
+                  {
+                    name: 'increment',
+                    label: 'Increment',
+                  },
+                  {
+                    name: 'decrement',
+                    label: 'Decrement',
+                  },
+                ]}
+                onAccessibilityAction={onAccessibilityAction}
                 style={thumbStyle}
                 onLayout={onThumbLayout}
                 hitSlop={
