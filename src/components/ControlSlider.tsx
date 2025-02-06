@@ -192,9 +192,7 @@ export const ControlSlider = forwardRef<
                 accessibilityValue={{
                   min: 0,
                   max: totalDuration,
-                  text: `${formatTime(timeValue.value)} of ${formatTime(
-                    totalDuration
-                  )}`,
+                  text: `${timeValue.value}s of ${formatTime(totalDuration)}s`,
                 }}
                 accessibilityHint="Drag left or right to adjust the current time"
                 accessibilityActions={[
