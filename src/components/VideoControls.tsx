@@ -7,7 +7,11 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { StyleSheet, View, type ViewStyle } from 'react-native';
+import {
+  AccessibilityChangeEventName,
+  AccessibilityInfo,
+  StyleSheet, View, type ViewStyle
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
@@ -64,6 +68,8 @@ export const VideoControls = forwardRef<
     ref
   ) => {
     const [visible, setVisible] = useState(initialVisible);
+    const [isScreenReaderEnabled, setIsScreenReaderEnabled] =
+      useState<boolean>(false);
     const opacityAnim = useSharedValue(initialVisible ? 1 : 0);
     const usedComponents = useMemo(() => {
       return { ...defaultComponents, ...components };
@@ -92,7 +98,9 @@ export const VideoControls = forwardRef<
     });
 
     const toggleVisible = useCallback(() => {
-      setVisible((old) => !old);
+      if (!isScreenReaderEnabled) {
+        setVisible((old) => !old);
+      }
     }, []);
 
     const tapGesture = useTapGesture({
@@ -101,7 +109,7 @@ export const VideoControls = forwardRef<
       onEnd: () => {
         'worklet';
 
-        if (enableDismissOnTap) {
+        if (enableDismissOnTap && !isScreenReaderEnabled) {
           runOnJS(toggleVisible)();
         }
       },
@@ -161,13 +169,30 @@ export const VideoControls = forwardRef<
       setVisible,
     }));
 
+    useEffect(() => {
+      if (isScreenReaderEnabled) setVisible(true);
+    }, [isScreenReaderEnabled]);
+
+    useEffect(() => {
+      const screenReaderChangedSubscription = AccessibilityInfo.addEventListener(
+        'screenReaderChanged' as AccessibilityChangeEventName,
+        (value: boolean) => {
+          setIsScreenReaderEnabled(value);
+        }
+      );
+      return () => {
+        // @ts-expect-error
+        screenReaderChangedSubscription.remove();
+      };
+    }, []);
+
     return (
       <ControlsVisibilityProvider
         onHide={onHide}
         visible={visible}
         visibilityDuration={autoHideAfterDuration}
         isPlaying={componentsProps?.videoState?.isPlaying ?? false}
-        autoDismiss={autoDismiss}
+        autoDismiss={isScreenReaderEnabled ? false : autoDismiss}
       >
         <GestureDetector
           gesture={Gesture.Exclusive(pinchGesture, doubleTap, tapGesture)}
