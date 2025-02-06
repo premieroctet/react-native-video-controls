@@ -58,7 +58,12 @@ const ControlVideoState = ({
           {({ pressed }) => {
             setPressedButton('rewind', pressed);
             return (
-              <View style={[styles.item, itemSpacingStyle]}>
+              <View
+                accessible
+                accessibilityLabel="Rewind"
+                accessibilityRole="button"
+                style={[styles.item, itemSpacingStyle]}
+              >
                 <RewindElement isPressed={pressed} />
               </View>
             );
@@ -70,7 +75,12 @@ const ControlVideoState = ({
           {({ pressed }) => {
             setPressedButton('play', pressed);
             return (
-              <View style={[styles.item, itemSpacingStyle]}>
+              <View
+                accessible
+                accessibilityLabel="Play"
+                accessibilityRole="button"
+                style={[styles.item, itemSpacingStyle]}
+              >
                 <PlayElement isPressed={pressed} />
               </View>
             );
@@ -82,7 +92,12 @@ const ControlVideoState = ({
           {({ pressed }) => {
             setPressedButton('pause', pressed);
             return (
-              <View style={[styles.item, itemSpacingStyle]}>
+              <View
+                accessible
+                accessibilityLabel="Pause"
+                accessibilityRole="button"
+                style={[styles.item, itemSpacingStyle]}
+              >
                 <PauseElement isPressed={pressed} />
               </View>
             );
@@ -94,7 +109,12 @@ const ControlVideoState = ({
           {({ pressed }) => {
             setPressedButton('forward', pressed);
             return (
-              <View style={[styles.item, itemSpacingStyle]}>
+              <View
+                accessible
+                accessibilityLabel="Forward"
+                accessibilityRole="button"
+                style={[styles.item, itemSpacingStyle]}
+              >
                 <ForwardElement isPressed={pressed} />
               </View>
             );

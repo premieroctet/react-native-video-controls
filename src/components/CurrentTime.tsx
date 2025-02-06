@@ -17,7 +17,11 @@ const CurrentTime = ({ time, style }: Props) => {
   });
 
   return (
-    <ReText text={text} style={[{ color: 'white', fontSize: 14 }, style]} />
+    <ReText
+      accessible
+      text={text}
+      style={[{ color: 'white', fontSize: 14 }, style]}
+    />
   );
 };
 
