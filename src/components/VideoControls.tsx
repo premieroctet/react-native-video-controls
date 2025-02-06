@@ -201,9 +201,11 @@ export const VideoControls = forwardRef<
           gesture={Gesture.Exclusive(pinchGesture, doubleTap, tapGesture)}
         >
           <Animated.View
-            accessible
-            accessibilityRole="button"
-            accessibilityLabel="Controls overlay"
+            onMagicTap={() => {
+              if (enableDismissOnTap) {
+                toggleVisible();
+              }
+            }}
           >
             {videoElement}
             <Animated.View
