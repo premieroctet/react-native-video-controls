@@ -1,6 +1,6 @@
 {
   "name": "@premieroctet/react-native-video-controls",
-  "version": "1.0.2",
+  "version": "1.2.3",
   "description": "Controls elements for react-native video players",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -151,5 +151,6 @@
       ]
     ]
   },
-  "dependencies": {}
+  "dependencies": {},
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
