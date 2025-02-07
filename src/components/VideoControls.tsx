@@ -189,6 +189,10 @@ export const VideoControls = forwardRef<
       };
     }, []);
 
+    useEffect(() => {
+      AccessibilityInfo.isScreenReaderEnabled().then(setIsScreenReaderEnabled);
+    }, []);
+
     return (
       <ControlsVisibilityProvider
         onHide={onHide}
