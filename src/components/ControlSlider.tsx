@@ -159,6 +159,7 @@ export const ControlSlider = forwardRef<
             },
           ]}
           onAccessibilityAction={onAccessibilityAction}
+          accessibilityRole="adjustable"
         >
           <Animated.View
             style={[
@@ -205,6 +206,7 @@ export const ControlSlider = forwardRef<
                     label: 'Decrement',
                   },
                 ]}
+                accessibilityRole="adjustable"
                 onAccessibilityAction={onAccessibilityAction}
                 style={thumbStyle}
                 onLayout={onThumbLayout}
