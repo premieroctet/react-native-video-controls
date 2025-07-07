@@ -43,7 +43,7 @@ export const ControlSlider = forwardRef<
     ref
   ) => {
     const [layout, onLayout] = useLayout();
-    const [thumbLayout, onThumbLayout] = useLayout();
+    const [, onThumbLayout] = useLayout();
     const thumbLayoutShared = useSharedValue<LayoutRectangle>({
       x: 0,
       y: 0,
@@ -89,14 +89,6 @@ export const ControlSlider = forwardRef<
       },
     }));
 
-    if (thumbLayout) {
-      thumbLayoutShared.value = thumbLayout;
-    }
-
-    if (layout) {
-      layoutShared.value = layout;
-    }
-
     const thumbStyle = useAnimatedStyle(() => {
       const thumbX = thumbValue.value;
       const thumbHeight = thumbLayoutShared.value?.height ?? 0;
@@ -139,6 +131,7 @@ export const ControlSlider = forwardRef<
           onLayout={(event) => {
             onLayout(event);
             onSliderLayout?.(event);
+            layoutShared.value = event.nativeEvent.layout;
           }}
           accessibilityLabel="Control slider"
           accessible
@@ -209,7 +202,10 @@ export const ControlSlider = forwardRef<
                 accessibilityRole="adjustable"
                 onAccessibilityAction={onAccessibilityAction}
                 style={thumbStyle}
-                onLayout={onThumbLayout}
+                onLayout={(evt) => {
+                  onThumbLayout(evt);
+                  thumbLayoutShared.value = evt.nativeEvent.layout;
+                }}
                 hitSlop={
                   typeof thumbHitSlop === 'number'
                     ? {
