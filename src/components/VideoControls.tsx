@@ -210,12 +210,16 @@ export const VideoControls = forwardRef<
                 toggleVisible();
               }
             }}
+            importantForAccessibility="no"
           >
-            {videoElement}
+            <View accessible={false} importantForAccessibility="no">
+              {videoElement}
+            </View>
             <Animated.View
               style={[styles.container, animatedContainerStyle, containerStyle]}
               onLayout={onContainerLayout}
               pointerEvents={visible ? 'auto' : 'none'}
+              importantForAccessibility="no"
             >
               <SliderComponent {..._componentsProps.slider!} />
               <View
@@ -226,6 +230,7 @@ export const VideoControls = forwardRef<
                   videoStateContainerStyle,
                 ]}
                 onLayout={onVideoStateLayout}
+                accessible
               >
                 <VideoStateComponent {..._componentsProps.videoState!} />
               </View>
